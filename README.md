@@ -1,19 +1,42 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# 🥗 NutriGuide AI - Personalized Nutrition & Clinical Analysis
 
-# Run and deploy your AI Studio app
+Мобильное приложение для платформы Android, разработанное как выпускная квалификационная работа. Приложение анализирует биометрические данные пользователя, ведет дневник питания и с помощью искусственного интеллекта (Groq API) генерирует персонализированные клинические рекомендации, а также распознает блюда по фотографиям.
 
-This contains everything you need to run your app locally.
+## 🛠️ Стек технологий
+* **Язык программирования:** Kotlin 2.0
+* **UI Фреймворк:** Jetpack Compose
+* **Архитектура:** MVVM (Model-View-ViewModel), Repository Pattern
+* **Локальная база данных:** Room (SQLite)
+* **Асинхронность:** Kotlin Coroutines, StateFlow
+* **Сеть:** OkHttp, REST API
+* **Искусственный интеллект:** Groq Cloud (Модели Llama 3.3 для текстовых рекомендаций и Llama 3.2 Vision для анализа фото)
+* **Внешние API:** USDA FoodData Central (база данных продуктов)
+* **Тестирование:** JUnit, MockWebServer, ComposeTestRule (57 успешно пройденных тестов)
 
-## Run Locally
+## ✨ Ключевые возможности
+* **Умный онбординг:** Расчет нормы калорий (BMR/TDEE) по формуле Миффлина-Сан Жеора с учетом диагнозов (диабет, гипертония) и аллергий.
+* **AI-сканер еды (Photo Vision):** Распознавание блюд по фото и автоматический подсчет КБЖУ через нейросеть.
+* **Клинический движок (Warning Engine):** Мгновенное предупреждение пользователя, если продукт содержит аллергены или опасен при его заболевании.
+* **Генерация советов (Medical AI):** Создание персонального плана питания и списка рекомендованных/запрещенных продуктов.
+* **Экспорт отчетов:** Формирование клинических PDF и CSV отчетов для предоставления лечащему врачу.
+* **Оффлайн-режим:** Благодаря Room DB, история питания и профиль доступны без интернета.
 
-**Prerequisites:**  [Android Studio](https://developer.android.com/studio)
+## 📱 Скриншоты приложения
 
+| Главный экран (Health Hub) | Сканер еды (AI Vision) | Предупреждение (Warning) | Отчет (PDF Export) |  AI Recommendation |
+| :---: | :---: | :---: | :---: | :---: |
+| <img src="https://raw.githubusercontent.com/kunduz-ima/NutriGuide-AI/324766cbb279337c678de39247d7a48eb282b0bf/screen_main.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/kunduz-ima/NutriGuide-AI/324766cbb279337c678de39247d7a48eb282b0bf/screen_vision.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/kunduz-ima/NutriGuide-AI/324766cbb279337c678de39247d7a48eb282b0bf/screen_warning.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/kunduz-ima/NutriGuide-AI/324766cbb279337c678de39247d7a48eb282b0bf/screen_pdf.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/kunduz-ima/NutriGuide-AI/324766cbb279337c678de39247d7a48eb282b0bf/screen_recom.jpg" width="200"/> |
 
-1. Open Android Studio
-2. Select **Open** and choose the directory containing this project
-3. Allow Android Studio to fix any incompatibilities as it imports the project.
-4. Create a file named `.env` in the project directory and set `GROQ_API_KEY` in that file to your Groq API key (see `.env.example` for an example)
-5. Remove this line from the app's `build.gradle.kts` file: `signingConfig = signingConfigs.getByName("debugConfig")`
-6. Run the app on an emulator or physical device
+## 🧪 Тестирование
+Проект покрыт тестами. В ходе разработки было успешно пройдено:
+* **43 Unit-теста** (проверка формул расчета, логики предупреждений, парсинга JSON).
+* **14 Интеграционных тестов** (проверка взаимодействия UI, БД Room и API с помощью MockWebServer).
+
+## 💻 Как запустить проект локально
+1. Клонируйте репозиторий:
+   `git clone https://github.com/kunduz-ima/NutriGuide-AI.git`
+2. Откройте проект в **Android Studio** (рекомендуется Ladybug или новее).
+3. В корневой папке проекта создайте файл **`.env`** и добавьте ваши API-ключи:
+   ```env
+   GROQ_API_KEY=ваш_ключ_groq
+   USDA_API_KEY=ваш_ключ_usda
