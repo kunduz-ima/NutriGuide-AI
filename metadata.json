@@ -1,0 +1,6 @@
+{
+  "name": "NutriGuide AI",
+  "description": "Mobile application for generating personalized nutrition recommendations for various diseases.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
